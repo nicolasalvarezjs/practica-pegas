@@ -1,10 +1,8 @@
 import express from 'express';
-
+import router from './routes';
 const app = express();
 
-app.use('/hello', (request, response) => {
-    response.send('hello');
-});
+app.use('/api', router);
 
 const port: any = process.env.PORT || 3000;
 app.listen(port, () => {
