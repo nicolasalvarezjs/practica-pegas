@@ -9,7 +9,7 @@ export const getPeopleController = async (
 ) => {
   try {
     const people = await getPeople();
-    response.status(200).send(people);
+    response.status(200).json(people);
   } catch (error: any) {
     response.send(internalServerError);
   }
@@ -21,7 +21,7 @@ export const postPeopleController = async (
 ) => {
   try {
     const newPerson = await createPerson(request.body);
-    response.status(201).send(newPerson);
+    response.status(201).json(newPerson);
   } catch (error: any) {
     response.status(500).send(internalServerError);
   }
