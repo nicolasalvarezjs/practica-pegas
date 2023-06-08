@@ -1,13 +1,9 @@
 import { Router } from 'express';
+import { getPeopleController, postPeopleController } from '../controllers/people.controller';
 
 const router = Router();
 
-router.get('/people', (req, res) => {
-    res.send('GET /people');
-});
-
-router.post('/people', (req, res) => {
-    res.send('POST /people');
-});
+router.get('/people', getPeopleController);
+router.post('/people', [] ,postPeopleController);
 
 export default router;
