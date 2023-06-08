@@ -1,0 +1,64 @@
+<div class="container mt-5 p-5 rounded bg-success text-light">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h2 class="text-center">Registrarse</h2>
+      <form class="d-flex flex-column gap-3" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="nombre">Nombre:</label>
+          <input formControlName="name" type="text" [ngClass]="getInputClass('name')" id="nombre" placeholder="Ingresa tu nombre">
+          <div class="text-danger" *ngIf="getIsInvalidField('name')">
+            Ingresa al menos 3 caracteres
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="nombre">Apellido:</label>
+          <input formControlName="lastname" type="text" [ngClass]="getInputClass('lastname')" id="nombre" placeholder="Ingresa tu apellido">
+          <div class="text-danger" *ngIf="getIsInvalidField('lastname')">
+            Ingresa al menos 3 caracteres
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="nombre">Telefono:</label>
+          <input formControlName="phone" type="text" [ngClass]="getInputClass('phone')" id="nombre" placeholder="Ingresa tu numero telefonico">
+          <div class="text-danger" *ngIf="getPhoneError('required')">
+            Campo requerido
+          </div>
+          <div class="text-danger" *ngIf="getPhoneError('alreadyExist')">
+            El numero de telefono ya esta en uso
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="nombre">Edad:</label>
+          <input formControlName="age" [ngClass]="getInputClass('age')" id="nombre" placeholder="Ingresa tu edad">
+          <div class="text-danger" *ngIf="getIsInvalidField('age')">
+            Campo requerido
+          </div>
+        </div>
+        <div class="form-group d-flex gap-5 mt-2 mb-2">
+            <div class="form-check">
+              <input formControlName="gender" checked class="form-check-input" type="radio" name="gender" id="radio-masculino" [value]="male">
+              <label class="form-check-label" for="radio-masculino">
+                Masculino
+              </label>
+            </div>
+            <div class="form-check">
+              <input formControlName="gender" class="form-check-input" type="radio" name="gender" id="radio-femenino" [value]="female">
+              <label class="form-check-label" for="radio-femenino">
+                Femenino
+              </label>
+            </div>
+        </div>
+        <div *ngIf="!isMale" class="form-group">
+          <div class="form-check form-switch">
+            <input formControlName="isBreastfeedingOrPregnant" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+            <label class="form-check-label" for="flexSwitchCheckDefault">¿Embarazo o lactancia?</label>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-dark mt-2 w-100" [disabled]="loading">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Enviar
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
