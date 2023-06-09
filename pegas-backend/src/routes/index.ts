@@ -5,7 +5,7 @@ import {
 } from "../controllers/people.controller";
 import {
   fieldsAreRequired,
-  phoneIsAlreadyUse,
+  phoneIsAlreadyExist,
 } from "../middlewares/people.middleware";
 
 const router = Router();
@@ -13,7 +13,7 @@ const router = Router();
 router.get("/people", getPeopleController);
 router.post(
   "/people",
-  [fieldsAreRequired, phoneIsAlreadyUse],
+  [ fieldsAreRequired, phoneIsAlreadyExist],
   postPeopleController
 );
 

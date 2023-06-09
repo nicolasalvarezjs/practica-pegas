@@ -18,7 +18,7 @@ export class FormRegisterComponent implements OnInit {
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     lastname: new FormControl('', [Validators.required, Validators.minLength(3)]),
     age: new FormControl('', [Validators.required]),
-    gender: new FormControl('', [Validators.required]),
+    gender: new FormControl('MALE', [Validators.required]),
     birthDate: new FormControl('09/13/1993', [Validators.required]),
     phone: new FormControl('', [Validators.required]),
     isBreastfeedingOrPregnant: new FormControl(false, [])
