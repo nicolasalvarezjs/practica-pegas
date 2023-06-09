@@ -7,6 +7,12 @@ import { Person } from "src/app/interfaces/Person";
 
 @Injectable()
 export class HomeEffects {
+
+    constructor(
+        private actions$: Actions,
+        private peopleService: PeopleService
+    ) {}
+    
     getPeopleList$ = createEffect(
         () =>
           this.actions$.pipe(
@@ -21,9 +27,4 @@ export class HomeEffects {
           ),
         { dispatch: true }
     );
-
-    constructor(
-        private actions$: Actions,
-        private peopleService: PeopleService
-    ) {}
 }

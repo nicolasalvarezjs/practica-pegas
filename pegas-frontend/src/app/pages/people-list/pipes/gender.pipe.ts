@@ -1,15 +1,13 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { FEMENINO, MALE, MASCULINO } from '../../../constants/gender';
 
 @Pipe({
   name: 'gender'
 })
 export class GenderPipe implements PipeTransform {
 
-  male = 'MALE';
-  female = 'FEMALE';
-
-  transform(value: any, args?: any): any {
-    return value === this.male ? 'Masculino' : 'Femenino';
+  transform(value: any): any {
+    return value === MALE ? MASCULINO : FEMENINO;
   }
 
 }

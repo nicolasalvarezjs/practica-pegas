@@ -4,7 +4,7 @@ export const PeopleSchema = new Schema(
   {
     name: { type: String, require: true },
     lastname: { type: String, require: true },
-    age: { type: String, require: true },
+    age: { type: Number, require: true },
     gender: {
       type: String,
       enum: ["MALE", "FEMALE"],
