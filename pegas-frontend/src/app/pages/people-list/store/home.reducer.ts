@@ -10,15 +10,16 @@ const initialState: State = {
     people: []
 }
 
+
 const _homeReducer = createReducer(
     initialState,
-    on(HomeActions.getPeopleStart, (state) => {
+    on(HomeActions.getPeopleList, (state) => {
       return state
     }),
-    on(HomeActions.addPeople, (state, {payload}) => {
-        console.log("add people ",payload);
+    on(HomeActions.addPeople, (state, { people }) => {
         return {
             ...state,
+            people: [ ...people ]
         }
       }),
   );

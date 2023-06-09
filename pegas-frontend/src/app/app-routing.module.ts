@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { FormRegisterComponent } from './form-register/form-register.component';
 import { PeopleService } from './services/people.service';
+import { FormRegisterComponent } from './pages/person-register/form-register.component';
 
 const routes: Routes = [
   {
@@ -11,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomeModule )
+    loadChildren: () => import('./pages/people-list/home.module').then( m => m.HomeModule )
   }
 ];
 

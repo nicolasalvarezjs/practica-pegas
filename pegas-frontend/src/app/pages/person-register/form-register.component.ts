@@ -1,9 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { PeopleService } from '../services/people.service';
-import { Person } from '../interfaces/Person';
-import { phoneIsAlreadyMessage } from '../exceptions/errorMessages';
+import { Person } from '../../interfaces/Person';
+import { phoneIsAlreadyMessage } from '../../constants/errorMessages';
 import { Router } from '@angular/router';
+import { PeopleService } from 'src/app/services/people.service';
 
 @Component({
   selector: 'app-form-register',
