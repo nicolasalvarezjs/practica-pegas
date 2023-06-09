@@ -17,7 +17,7 @@ export const fieldsAreRequired = (
   }
 };
 
-export const phoneIsAlreadyUse = async (
+export const phoneIsAlreadyExist = async (
   { body }: Request<any, any, Person>,
   response: Response,
   next: Function
