@@ -4,7 +4,7 @@ import { StoreModule } from '@ngrx/store';
 import { HomeComponent } from './home.component';
 import { HomeRoutes } from './home.routing';
 import { GenderPipe } from './pipes/gender.pipe';
-import { booleanToSpanish } from './pipes/booleanToSpanish.pipe';
+import { breastfeedingOrPregnantTransform } from './pipes/breastfeedingOrPregnantTransform.pipe';
 import { homeReducer } from './store/home.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { HomeEffects } from './store/home.effects';
@@ -19,7 +19,7 @@ import { HomeEffects } from './store/home.effects';
   declarations: [		
       HomeComponent,
       GenderPipe,
-      booleanToSpanish
+      breastfeedingOrPregnantTransform
    ]
 })
 export class HomeModule { }

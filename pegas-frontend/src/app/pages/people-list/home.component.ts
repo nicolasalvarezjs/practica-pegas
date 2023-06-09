@@ -4,7 +4,7 @@ import { Person } from '../../interfaces/Person';
 import { getPeopleList } from './store/home.actions';
 import { State } from './store/home.reducer';
 import { selectPeople } from './store/home.selectors';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 const headTable  = [
   'Nombre',

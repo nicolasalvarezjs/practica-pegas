@@ -1,9 +1,10 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Person } from '../../interfaces/Person';
 import { phoneIsAlreadyMessage } from '../../constants/errorMessages';
 import { Router } from '@angular/router';
 import { PeopleService } from 'src/app/services/people.service';
+import { MALE, FEMALE } from '../../constants/gender';
 
 @Component({
   selector: 'app-form-register',
@@ -12,22 +13,27 @@ import { PeopleService } from 'src/app/services/people.service';
 })
 export class FormRegisterComponent implements OnInit {
 
-  male = 'MALE';
-  female = 'FEMALE';
-  form = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    lastname: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    age: new FormControl('', [Validators.required]),
-    gender: new FormControl('MALE', [Validators.required]),
-    birthDate: new FormControl('09/13/1993', [Validators.required]),
-    phone: new FormControl('', [Validators.required]),
-    isBreastfeedingOrPregnant: new FormControl(false, [])
-  });
+  male = MALE;
+  female = FEMALE;
+  form!: FormGroup;
   loading = false;
 
-  constructor(private peopleService: PeopleService, private router: Router) {}
+  constructor(
+    private peopleService: PeopleService, 
+    private router: Router,
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit() {
+    this.form = this.formBuilder.group({
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      lastname: ['', [Validators.required, Validators.minLength(3)]],
+      age: ['', [Validators.required, Validators.min(1), Validators.max(120)]],
+      gender: [MALE,],
+      birthDate: ['', [Validators.required]],
+      phone: ['', [Validators.required]],
+      isBreastfeedingOrPregnant: [false]
+    });
     this.form.controls['gender'].valueChanges.subscribe( newValue => {
       if(newValue === this.male){
         this.form.controls['isBreastfeedingOrPregnant'].setValue(false);
@@ -41,7 +47,11 @@ export class FormRegisterComponent implements OnInit {
       return;
     }
     this.loading = true;
-    this.peopleService.createPerson(this.form.value as Person)
+    const formValues: Person = {
+      ...this.form.value,
+      phone: this.form.value.phone.toString()
+    }
+    this.peopleService.createPerson(formValues)
       .subscribe({
         next: e => {
           this.loading = false;
@@ -72,6 +82,11 @@ export class FormRegisterComponent implements OnInit {
   getPhoneError(key: 'required' | 'alreadyExist')  {
     const errors = this.form.controls['phone'].errors || {};
     return errors[key] && this.form.controls['phone'].touched;
+  }
+
+  getAgeError(keyError: 'required' | 'min' | 'max'){
+    const errors = this.form.controls['age'].errors || {};
+    return errors[keyError] && this.form.controls['phone'].touched;
   }
 
 }
